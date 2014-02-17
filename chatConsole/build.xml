@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<project name="echo" default="compile" basedir=".">
+
+<!-- top-level project paths -->
+	<property name="classes" value="./classes"/>
+	<property name="source" value="./src"/>
+
+<!-- initialize -->
+	<target name="init">
+
+		<!-- time stamp -->
+		<tstamp/>
+
+		<!-- build necessary directories -->
+		<mkdir dir="${classes}"/>
+	</target>
+
+
+<!-- clean -->
+	<target name="clean">
+		<delete dir="${classes}"/>
+	</target>
+
+
+<!-- compile -->
+	<target name="compile" depends="clean, init">
+		<javac srcdir="${source}" destdir="${classes}">
+		</javac>
+	</target>
+
+
+<!-- run server -->
+	<target name="server" depends="compile">
+		<java classname="EchoServer">
+			<arg value="3000"/>
+			<classpath>
+				<pathelement location="${classes}"/>
+			</classpath>
+		</java>
+	</target>
+
+</project>
